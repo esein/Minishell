@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/10 20:37:07 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/11 21:59:56 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include "Libft/libft.h"
 
 int		execute(char **args);
+
+int		exit_error(char *error);
 
 #endif
