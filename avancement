@@ -1,2 +1,6 @@
 lire le post sur env.
+env cree, doit mtn regarder la facon de stocker le path pour pouvoir le modifier
+
+
+
 execute : reste a lancer execve.
