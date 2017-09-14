@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 05:25:10 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/10 21:21:06 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/14 09:03:31 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void				ft_put_nb_c(char c, int nb);
 int					ft_strlen(const char *s);
 
 int					ft_intlen(int nb);
+
+int					ft_tablen(char **tab);
 
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 

@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 21:00:01 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/10 21:20:38 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/14 10:00:10 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_char_tab(char **tab, char c)
 	size_t	i;
 
 	i = 0;
-	while (tab[i] != 0)
+	while (tab[i])
 	{
 		ft_putstr(tab[i]);
 		ft_putchar(c);

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/14 09:38:26 by gcadiou          ###   ########.fr       */
+/*   Created: 2017/09/14 09:01:14 by gcadiou           #+#    #+#             */
+/*   Updated: 2017/09/14 09:03:00 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "Libft/libft.h"
+int		ft_tablen(char **tab)
+{
+	int	i;
 
-int		execute(char **args);
-
-void	exit_error(char *error);
-
-char	**create_env();
-#endif
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}

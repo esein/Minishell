@@ -6,14 +6,16 @@
 #    By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/09 20:23:23 by gcadiou           #+#    #+#              #
-#    Updated: 2017/09/10 21:18:40 by gcadiou          ###   ########.fr        #
+#    Updated: 2017/09/14 09:34:55 by gcadiou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = minishell.c  \
-	  execute.c
+	  execute.c    \
+	  env.c        \
+	  error.c
 
 OBJ = $(SRC:.c=.o)
 
