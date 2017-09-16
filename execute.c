@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 20:35:53 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/14 09:37:58 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/16 05:07:46 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ int		execute(char **args)
 {
 	char	**env;
 
-	env = create_env();
-	ft_print_char_tab(args, '\n');
-	ft_print_char_tab(env, '\n');
-	return (0);
+//	env = create_env();
+//	ft_print_char_tab(args, '\n');
+//	ft_print_char_tab(env, '\n');
+	if (ft_strcmp(args[0], "exit") != 0)
+		return (0);
+	else
+		return (1);
 }
