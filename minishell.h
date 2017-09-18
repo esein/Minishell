@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/14 09:38:26 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/18 12:05:24 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 # define MINISHELL_H
 
 # include "Libft/libft.h"
+char	**parse_entry(char *entry);
 
-int		execute(char **args);
+int		run_bin(char **args, char **env);
+
+char	*read_entry();
+
+int		execute(char **env);
+
+char	*get_value(char **env, char *var);
+
+int		print_prompt(char **env);
 
 void	exit_error(char *error);
 

@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 05:25:10 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/14 09:03:31 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/18 10:54:31 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ char				*ft_strtrim(char const *s);
 
 char				**ft_strsplit(char const *s, char c);
 
+char				**ft_strsplit_whitespace(char const *s);
+
 char				*ft_itoa(int n);
 
 void				ft_putendl(char const *s);
@@ -210,9 +212,23 @@ void				*ft_realloc(void *ptr, size_t size, size_t size_actual);
 
 char				*ft_strcut(char *s, int start, int end);
 
+char				*ft_strcut_begin(char *s, int i);
+
+char				*ft_strcpy_begin(char *s, int i);
+
+char				*ft_strcut_until(char *s, char c);
+
+char				*ft_strcpy_until(char *s, char c);
+
 char				*ft_str_endcut(char *s, int size);
+
+char				*ft_str_endcpy(char *s, int size);
 
 char				*ft_str_endcut_until(char *s, char c);
 
+char				*ft_str_endcpy_until(char *s, char c);
+
 void				check_malloc(void *ptr, char *s);
+
+void				free_doubletab(char **tab);
 #endif

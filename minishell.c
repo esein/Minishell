@@ -6,51 +6,29 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 20:43:13 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/16 05:24:24 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/18 12:14:20 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*read_entry()
+int		print_prompt(char **env)
 {
-	char *entry;
-	int		ret;
+	char	*pwd;
 
-	entry = NULL;
-	ret = get_next_line(0 , &entry);
-	ft_putnbr(ret);
-	ft_putstr(entry);
-	return (entry);
-}
-
-char	**parse_entry(char *entry)
-{
-	char	**args;
-
-	args = ft_strsplit(entry, ' ');
-	return (args);
+	pwd = get_value(env, "PWD");
+	ft_putstr(pwd);
+	ft_putstr(">");
+	free(pwd);
+	return (0);
 }
 
 int		main()
 {
-	char	*entry;
-	char	**args;
-	int		end;
+	char	**env;
 
-	end = 0;
-	entry = NULL;
-	while (end == 0)
-	{
-		ft_putstr("$> ");
-		entry = read_entry();
-		args = parse_entry(entry);
-		end = execute(args);
-		if (entry != NULL)
-			free(entry);
-		if (args != NULL)
-			free(args);
-//		end = 1;
-	}
+	env = create_env();
+	execute(env);
+	free_doubletab(env);
 	return (0);
 }

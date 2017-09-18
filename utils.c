@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char_tab.c                                :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/10 21:00:01 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/10 21:20:38 by gcadiou          ###   ########.fr       */
+/*   Created: 2017/09/18 05:34:28 by gcadiou           #+#    #+#             */
+/*   Updated: 2017/09/18 05:35:15 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_print_char_tab(char **tab, char c)
+void		exit_error(char *msg)
 {
-	size_t	i;
-
-	i = 0;
-	while (tab[i] != 0)
-	{
-		ft_putstr(tab[i]);
-		ft_putchar(c);
-		i++;
-	}
+	ft_putstr(msg);
+	exit(1);
 }

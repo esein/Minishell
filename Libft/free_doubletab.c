@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_doubletab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/11 21:57:12 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/11 21:59:26 by gcadiou          ###   ########.fr       */
+/*   Created: 2017/09/18 05:28:37 by gcadiou           #+#    #+#             */
+/*   Updated: 2017/09/18 05:32:12 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	exit_error(char *error)
+void	free_doubletab(char **tab)
 {
-	ft_putstr(error);
-	exit(1);
+	int		i;
+
+	i = 0;
+	while (tab[i] != 0)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

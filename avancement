@@ -1,6 +1,4 @@
-lire le post sur env.
-env cree, doit mtn regarder la facon de stocker le path pour pouvoir le modifier
+execve marche, reste a lui envoyer la bonne commande en cherchant dans les path la localisation du premier arg.
 
+doit ensuite faire les builtins, cd en priorite et verifier que execve et les bin qu'elle lance utilisent bien la variable pwd.
 
-
-execute : reste a lancer execve.

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char_tab.c                                :+:      :+:    :+:   */
+/*   ft_strcut_begin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/10 21:00:01 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/10 21:20:38 by gcadiou          ###   ########.fr       */
+/*   Created: 2017/09/18 10:35:24 by gcadiou           #+#    #+#             */
+/*   Updated: 2017/09/18 11:29:33 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_char_tab(char **tab, char c)
+char	*ft_strcut_begin(char *s, int i)
 {
-	size_t	i;
+	char	*new;
 
-	i = 0;
-	while (tab[i] != 0)
+	new = ft_strnew(ft_strlen(s) - i + 1);
+	while (s[i])
 	{
-		ft_putstr(tab[i]);
-		ft_putchar(c);
+		new[i - 1] = s[i];
 		i++;
 	}
+	new[i] = '\0';
+	free(s);
+	return (new);
 }

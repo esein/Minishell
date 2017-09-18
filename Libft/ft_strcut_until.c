@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char_tab.c                                :+:      :+:    :+:   */
+/*   ft_strcut_until.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/10 21:00:01 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/10 21:20:38 by gcadiou          ###   ########.fr       */
+/*   Created: 2017/09/18 08:38:24 by gcadiou           #+#    #+#             */
+/*   Updated: 2017/09/18 10:51:46 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_char_tab(char **tab, char c)
+char	*ft_strcut_until(char *s, char c)
 {
-	size_t	i;
+	int		i;
+	int		len;
+	char	*new;
 
-	i = 0;
-	while (tab[i] != 0)
-	{
-		ft_putstr(tab[i]);
-		ft_putchar(c);
-		i++;
-	}
+	i = ft_strlentil(s, c, 0);
+	len = ft_strlen(&(s[i]));
+	new = ft_memalloc(sizeof(char) * (len + 1));
+	check_malloc(new, "ft_strcut_until");
+	new = ft_strncpy(new, &(s[i]), len);
+	free(s);
+	return (new);
 }

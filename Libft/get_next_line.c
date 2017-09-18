@@ -6,11 +6,10 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 17:17:41 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/06/28 16:09:15 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/16 04:29:50 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "get_next_line.h"
 #include <unistd.h>
 #include <fcntl.h>
@@ -24,6 +23,8 @@ int				old_to_new(t_gnl *gnl)
 
 	i = 0;
 	i2 = 0;
+	if (gnl->str_new)
+		free(gnl->str_new);
 	check_malloc(gnl->str_new = malloc(sizeof(char) *
 			(1 + ft_strlentil(gnl->str_old, '\n', 0))), "gnl: old_to_new");
 	while (gnl->str_old[i])
@@ -40,9 +41,7 @@ int				old_to_new(t_gnl *gnl)
 		i++;
 		i2++;
 	}
-	gnl->str_new[i] = '\0';
-	free(gnl->str_old);
-	return (0);
+	return (norme_old_to_new(gnl, i, i2));
 }
 
 int				read_and_add(const int fd, t_gnl *gnl)
@@ -98,7 +97,9 @@ int				wicheone(int fd, t_gnl **gnl)
 static	void	vivelanorme2(t_gnl *gnl)
 {
 	gnl->ret = 0;
-	check_malloc(gnl->str_new = (char *)malloc(sizeof(char)),
+	if (gnl->str_new)
+		free(gnl->str_new);
+	check_malloc(gnl->str_new = (char *)ft_memalloc(sizeof(char)),
 			"gnl: vivelanorme2");
 	gnl->str_new[0] = '\0';
 }
@@ -112,22 +113,20 @@ int				get_next_line(const int fd, char **line)
 		return (-1);
 	if (gnl == NULL)
 	{
-		check_malloc(gnl = (t_gnl*)malloc(sizeof(t_gnl) * 1),
+		check_malloc(gnl = (t_gnl*)ft_memalloc(sizeof(t_gnl) * 1),
 				"gnl: get_next_line");
 		gnl[0].last = 1;
 		gnl[0].fd = fd;
 	}
 	act = wicheone(fd, &gnl);
 	vivelanorme2(&(gnl[act]));
-	if (gnl[act].notfirst == 1)
-		if (old_to_new(&(gnl[act])))
-		{
-			*line = gnl[act].str_new;
-			return (1);
-		}
+	if (norme_gnl(gnl, line, act) == 1)
+		return (1);
 	gnl[act].notfirst = read_and_add(fd, &(gnl[act]));
 	*line = gnl[act].str_new;
 	if (gnl[act].notfirst == -1)
 		return (-1);
+	if (gnl[act].ret == 0)
+		return (norme_gnl_free(&gnl, line, act));
 	return (gnl[act].ret);
 }
