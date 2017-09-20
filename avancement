@@ -1,6 +1,7 @@
-execve marche, reste a lui envoyer la bonne commande en cherchant dans les path la localisation du premier arg.
+execve marche bien apperemment
+echo fait, faire env setenv unsetenv puis cd.
 
-doit ensuite faire les builtins, cd en priorite et verifier que execve et les bin qu'elle lance utilisent bien la variable pwd.
 
+tests dur : checker les entree pipe exemple echo "lol" | ./Minishell
 
 a faire plus tard : penser a changer les fonctions ft_str_endcpy/cut, actuellement coupe la fin et retourne le debut mais logiquement devrait faire l'inverse.
