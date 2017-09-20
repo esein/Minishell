@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/09 20:43:13 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 18:31:26 by gcadiou          ###   ########.fr       */
+/*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
+/*   Updated: 2017/09/20 18:29:03 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		print_prompt(char **env)
+void		echo(char **args)
 {
-	char	*pwd;
-
-	pwd = getcwd(NULL, 0);
-	ft_putstr(pwd);
-	ft_putstr(">");
-	free(pwd);
-	return (0);
-}
-
-int		main()
-{
-	char	**env;
-
-	env = create_env();
-
-	execute(env);
-	free_doubletab(env);
-	return (0);
+	if (args[1])
+	{
+		if (ft_strcmp(args[1], "-n") != 0)
+		{
+			ft_print_char_tab(&(args[1]), ' ');
+			ft_putchar('\n');
+		}
+		else
+		{
+			if (args[2])
+				ft_print_char_tab(&(args[2]), ' ');
+		}
+	}
 }

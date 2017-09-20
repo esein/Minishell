@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 10:34:25 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 17:02:17 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <dirent.h>
 
 int		check_builtin(char *name);
+
+void		echo(char **args);
 
 char	**parse_entry(char *entry);
 
