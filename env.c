@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 15:28:22 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 19:57:17 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ char	*find_bin(char **env, char *name)
 {
 	char	**tmp;
 	char	*tmp1;
-	char	*join;
 	char	*join2;
 	int		i;
 
 	i = 1;
+	if ((tmp1 = check_path(name)) != NULL)
+		return (tmp1);
 	tmp1 = get_value(env, "PATH");
 	tmp = ft_strsplit(tmp1, ':');
 	free(tmp1);
@@ -46,9 +47,9 @@ char	*find_bin(char **env, char *name)
 	{
 		if (find_name(tmp[i], name) == 1)
 		{
-			join = ft_strjoin(tmp[i], "/");
-			join2 = ft_strjoin(join, name);
-			free(join);
+			tmp1 = ft_strjoin(tmp[i], "/");
+			join2 = ft_strjoin(tmp1, name);
+			free(tmp1);
 			free_doubletab(tmp);
 			return (join2);
 		}

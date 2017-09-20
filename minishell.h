@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 17:02:17 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 20:05:52 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 
 int		check_builtin(char *name);
 
-void		echo(char **args);
+void	set_env(char **env, char **args);
+void	echo(char **args);
 
+char	*check_path(char *name);
 char	**parse_entry(char *entry);
 
 char	*find_bin(char **env, char *name);

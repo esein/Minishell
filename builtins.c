@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 18:29:03 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 19:59:08 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,8 @@ void		echo(char **args)
 				ft_print_char_tab(&(args[2]), ' ');
 		}
 	}
+}
+
+void		set_env(char **env, char **args)
+{
 }

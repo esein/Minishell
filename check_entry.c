@@ -6,11 +6,23 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:25:08 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 14:59:08 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 20:05:51 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*check_path(char *name)
+{
+	if (name[0] == '/')
+		return (ft_strdup(name));
+	else if (ft_strncmp(name, "./", 2) == 0 || ft_strncmp(name, "../", 3) == 0)
+		return (ft_strdup(name));
+	else if (name[0] == '~')
+		return (ft_strdup(name));
+	else
+		return (NULL);
+}
 
 char	*read_entry()
 {
