@@ -2,3 +2,5 @@ execve marche, reste a lui envoyer la bonne commande en cherchant dans les path 
 
 doit ensuite faire les builtins, cd en priorite et verifier que execve et les bin qu'elle lance utilisent bien la variable pwd.
 
+
+a faire plus tard : penser a changer les fonctions ft_str_endcpy/cut, actuellement coupe la fin et retourne le debut mais logiquement devrait faire l'inverse.

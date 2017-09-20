@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 20:43:13 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/18 12:14:20 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 10:24:55 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		print_prompt(char **env)
 {
 	char	*pwd;
 
-	pwd = get_value(env, "PWD");
+	pwd = getcwd(NULL, 0);
 	ft_putstr(pwd);
 	ft_putstr(">");
 	free(pwd);

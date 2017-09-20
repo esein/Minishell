@@ -6,37 +6,30 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 20:35:53 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/18 12:16:23 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 13:46:36 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*read_entry()
+int		run_builtin(int	num)
 {
-	char *entry;
-	int		ret;
-
-	entry = NULL;
-	ret = get_next_line(0 , &entry);
-	if (ret <= 0)
+	if (num == 1)
+		ft_putstr("cd");
+	else if (num == 2)
+		ft_putstr("echo");
+	else if (num == 3)
+		ft_putstr("env");
+	else if (num == 4)
+		ft_putstr("setenv");
+	else if (num == 5)
+		ft_putstr("unsetenv");
+	else if (num == 6)
 		exit(0);
-	return (entry);
+	return (0);
 }
 
-char	**parse_entry(char *entry)
-{
-	char	**args;
-
-	args = ft_strsplit_whitespace(entry);
-	if (ft_strcmp(args[0], "exit") == 0)
-		exit(0);
-	if (args == NULL)
-		exit(1);
-	return (args);
-}
-
-int		run_bin(char **args, char **env)
+int		run_bin(char **args, char **env, char *cmd)
 {
 	pid_t pid;
 
@@ -46,9 +39,7 @@ int		run_bin(char **args, char **env)
 	else if (pid < 0)
 		exit_error("fork error");
 	else
-	{
-		execve("/bin/ls", args, env);
-	}
+		execve(cmd, args, env);
 	return (0);
 }
 
@@ -56,7 +47,9 @@ int		execute(char **env)
 {
 	char	*entry;
 	int		end;
+	int		num;
 	char	**args;
+	char	*bin;
 
 	end = 0;
 	entry = NULL;
@@ -67,7 +60,10 @@ int		execute(char **env)
 		if (entry[0] != '\0')
 		{
 			args = parse_entry(entry);
-			run_bin(args, env);
+			if ((num = check_builtin(args[0])) > 0)
+				run_builtin(num);
+			else if ((bin = find_bin(env, args[0])) != NULL)
+				run_bin(args, env, bin);
 			free_doubletab(args);
 		}
 	}

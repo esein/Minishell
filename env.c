@@ -6,11 +6,55 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/18 11:40:17 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/20 12:46:52 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		find_name(char *wd, char *name)
+{
+	int				ret;
+	DIR				*dir;
+	struct dirent	*file;
+
+	if ((dir = opendir(wd)) == NULL)
+		return (0);
+		while ((file = readdir(dir)))
+		if (ft_strcmp(file->d_name, name) == 0)
+		{
+			closedir(dir);
+			return (1);
+		}
+	closedir(dir);
+	return (0);
+}
+
+char	*find_bin(char **env, char *name)
+{
+	char	**tmp;
+	char	*join;
+	char	*join2;
+	int		i;
+
+	i = 1;
+	tmp = ft_strsplit(get_value(env, "PATH"), ':');
+	while (tmp[i] != 0)
+	{
+		if (find_name(tmp[i], name) == 1)
+		{
+			join = ft_strjoin(tmp[i], "/");
+			join2 = ft_strjoin(join, name);
+			free(join);
+			free(tmp);
+			return (join2);
+		}
+		i++;
+	}
+	free(tmp);
+	ft_putendl("command not found");
+	return (NULL);
+}
 
 char	*get_value(char **env, char *var)
 {

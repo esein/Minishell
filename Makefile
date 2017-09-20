@@ -6,7 +6,7 @@
 #    By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/09 20:23:23 by gcadiou           #+#    #+#              #
-#    Updated: 2017/09/18 05:35:49 by gcadiou          ###   ########.fr        #
+#    Updated: 2017/09/20 10:58:05 by gcadiou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = minishell
 SRC = minishell.c  \
 	  execute.c    \
 	  env.c        \
+	  check_entry.c  \
 	  utils.c
 
 OBJ = $(SRC:.c=.o)
