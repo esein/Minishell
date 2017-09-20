@@ -1,3 +1,5 @@
+URGENT : GERER LES ESPACE ET TAB TOUS SEULS (ne rien afficher)
+
 execve marche bien apperemment
 echo fait, faire env setenv unsetenv puis cd.
 
