@@ -6,13 +6,13 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 20:35:53 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 19:58:06 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/21 10:14:14 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		run_builtin(int	num, char **args)
+int		run_builtin(int	num, char **env, char **args)
 {
 	if (num == 1)
 		ft_putstr("cd");
@@ -21,7 +21,7 @@ int		run_builtin(int	num, char **args)
 	else if (num == 3)
 		ft_putstr("env");
 	else if (num == 4)
-		ft_putstr("setenv");
+		set_env(env, args);
 	else if (num == 5)
 		ft_putstr("unsetenv");
 	else if (num == 6)
@@ -64,7 +64,7 @@ int		execute(char **env)
 		{
 			args = parse_entry(entry);
 			if ((num = check_builtin(args[0])) > 0)
-				run_builtin(num, args);
+				run_builtin(num, env, args);
 			else if ((bin = find_bin(env, args[0])) != NULL)
 				run_bin(args, env, bin);
 			else

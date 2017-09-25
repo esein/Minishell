@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/16 05:33:43 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/18 02:37:47 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/25 15:25:08 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ char		**ft_strsplit_whitespace(char const *s)
 	while (numwords < nbwords)
 	{
 		filltab(tab, s, numwords);
-	//	tab = filltab(tab, s, numwords);
 		numwords++;
 	}
 	tab[numwords] = 0;

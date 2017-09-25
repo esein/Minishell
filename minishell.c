@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 20:43:13 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 18:31:26 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/25 23:22:44 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,27 @@
 int		print_prompt(char **env)
 {
 	char	*pwd;
+	struct utsname *name;
+	char	*tmp;
 
+	name = malloc(sizeof(name));
+	uname(name);
 	pwd = getcwd(NULL, 0);
-	ft_putstr(pwd);
-	ft_putstr(">");
+	tmp = ft_strcpy_until(name->nodename, '.');
+	COLOR(S_CYAN);
+	ft_putchar('[');
+	ft_putstr(tmp);
+	free(tmp);
+	ft_putchar(':');
+	tmp = ft_str_endcpy_until(pwd, '/');
+	tmp = ft_strcut_begin(tmp, 1);
+	ft_putstr(tmp);
+	ft_putstr("]");
+	COLOR(NONE);
+	ft_putchar(' ');
+	free(name);
 	free(pwd);
+	free(tmp);
 	return (0);
 }
 
@@ -28,7 +44,6 @@ int		main()
 	char	**env;
 
 	env = create_env();
-
 	execute(env);
 	free_doubletab(env);
 	return (0);

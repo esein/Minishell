@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 07:26:34 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/18 11:05:52 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/23 21:13:04 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*ft_str_endcut_until(char *s, char c)
 		return (0);
 	new = ft_strncpy(new, s, i + 1);
 	new[i + 1] = '\0';
+	free(s);
 	return (new);
 }

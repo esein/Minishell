@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 20:05:52 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/21 11:54:35 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include "Libft/libft.h"
 # include <dirent.h>
+# include <sys/utsname.h>
 
 int		check_builtin(char *name);
+void		set_env(char **env, char **args);
 
 void	set_env(char **env, char **args);
 void	echo(char **args);
