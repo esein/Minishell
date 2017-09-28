@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 19:57:17 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/28 17:05:54 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ char	*find_bin(char **env, char *name)
 		return (tmp1);
 	tmp1 = get_value(env, "PATH");
 	tmp = ft_strsplit(tmp1, ':');
-	free(tmp1);
+	ft_free(tmp1);
 	while (tmp[i] != 0)
 	{
 		if (find_name(tmp[i], name) == 1)
 		{
 			tmp1 = ft_strjoin(tmp[i], "/");
 			join2 = ft_strjoin(tmp1, name);
-			free(tmp1);
+			ft_free(tmp1);
 			free_doubletab(tmp);
 			return (join2);
 		}
@@ -68,16 +68,15 @@ char	*get_value(char **env, char *var)
 	i = 0;
 	while (env[i] != 0)
 	{
-		tmp = ft_str_endcpy_until(env[i], '=');
-		tmp = ft_str_endcut(tmp, 1);
+		tmp = ft_strcpy_until(env[i], '=');
 		if (ft_strcmp(tmp, var) == 0)
 		{
-			free(tmp);
-			tmp = ft_strcpy_until(env[i], '=');
+			ft_free(tmp);
+			tmp = ft_str_endcpy_until(env[i], '=');
 			tmp = ft_strcut_begin(tmp, 1);
 			return (tmp);
 		}
-		free(tmp);
+		ft_free(tmp);
 		i++;
 	}
 	return (0);

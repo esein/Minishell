@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 20:35:53 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/21 10:14:14 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/28 17:05:53 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		run_bin(char **args, char **env, char *bin)
 		exit_error("fork error");
 	else
 	{
+		ft_putstr(args[0]);
+		ft_putstr(bin);
 		execve(bin, args, env);
 		free(bin);
 	}
@@ -60,16 +62,15 @@ int		execute(char **env)
 	{
 		print_prompt(env);
 		entry = read_entry();
-		if (entry[0] != '\0')
+		if (entry != NULL)
 		{
 			args = parse_entry(entry);
 			if ((num = check_builtin(args[0])) > 0)
 				run_builtin(num, env, args);
 			else if ((bin = find_bin(env, args[0])) != NULL)
 				run_bin(args, env, bin);
-			else
-				free(bin);
-			free_doubletab(args);
+				ft_free(bin);
+	//		free_doubletab(args);
 		}
 	}
 	return (0);

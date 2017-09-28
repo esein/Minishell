@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 05:25:10 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/18 10:54:31 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/28 15:17:05 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ char				*ft_str_endcut_until(char *s, char c);
 char				*ft_str_endcpy_until(char *s, char c);
 
 void				check_malloc(void *ptr, char *s);
+
+void				*ft_free(void *ptr);
 
 void				free_doubletab(char **tab);
 #endif

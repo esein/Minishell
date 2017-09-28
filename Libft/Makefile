@@ -6,7 +6,7 @@
 #    By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/09 05:23:59 by gcadiou           #+#    #+#              #
-#    Updated: 2017/09/18 10:58:46 by gcadiou          ###   ########.fr        #
+#    Updated: 2017/09/28 15:17:43 by gcadiou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRC = ft_atoi.c       \
 	  ft_tablen.c           \
 	  check_malloc.c        \
 	  free_doubletab.c      \
+	  ft_free.c             \
 	  get_next_line.c       \
 	  norme_gnl.c
 

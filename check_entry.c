@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:25:08 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/20 20:05:51 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/28 17:05:54 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,21 @@ char	*check_path(char *name)
 
 char	*read_entry()
 {
-	char *entry;
+	char	*entry;
 	int		ret;
-
+	int		i;
+	i = 0;
 	entry = NULL;
 	ret = get_next_line(0 , &entry);
 	if (ret <= 0)
 		exit(0);
-	return (entry);
+	while (entry[i])
+	{
+		if (!(ISSPACE(entry, i)))
+			return (entry);
+		i++;
+	}
+	return (NULL);
 }
 
 char	**parse_entry(char *entry)
