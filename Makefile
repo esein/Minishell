@@ -6,14 +6,14 @@
 #    By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/09 20:23:23 by gcadiou           #+#    #+#              #
-#    Updated: 2017/09/20 17:03:20 by gcadiou          ###   ########.fr        #
+#    Updated: 2017/09/29 18:10:16 by gcadiou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = minishell.c    \
-	  execute.c      \
+	  run.c          \
 	  env.c          \
 	  check_entry.c  \
 	  builtins.c     \

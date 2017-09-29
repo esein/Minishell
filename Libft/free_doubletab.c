@@ -6,21 +6,22 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 05:28:37 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/28 15:17:28 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/29 17:57:07 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_doubletab(char **tab)
+void	*free_doubletab(char **tab)
 {
 	int		i;
 
 	i = 0;
 	while (tab[i] != 0)
 	{
-		ft_free(tab[i]);
+		tab[i] = ft_free(tab[i]);
 		i++;
 	}
 	ft_free(tab);
+	return (NULL);
 }

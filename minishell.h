@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/21 11:54:35 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/09/29 18:09:49 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		run_bin(char **args, char **env, char *cmd);
 
 char	*read_entry();
 
-int		execute(char **env);
+int		run_loop(char **env);
 
 char	*get_value(char **env, char *var);
 
