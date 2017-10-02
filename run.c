@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:10:25 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 20:31:48 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/02 20:08:36 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,13 @@ int		run_bin(char **args, char **env, char *bin)
 //		ft_putstr(args[0]);
 //		ft_putstr(bin);
 		execve(bin, args, env);
-		free(bin);
+		if (check_directory(bin) == 0)
+		{
+			ft_putstr(bin);
+			ft_putstr(": ");
+			ft_putendl("command isn't executable");
+		}
+		exit(0);
 	}
 	return (0);
 }
@@ -68,7 +74,7 @@ int		run_loop(char **env)
 			args = parse_entry(entry);
 			if ((num = check_builtin(args[0])) > 0)
 				run_builtin(num, env, args);
-			else if ((bin = find_bin(env, args[0])) != NULL)
+			else if (check_rights(bin = find_bin(env, args[0])) != 0)
 				run_bin(args, env, bin);
 			bin = ft_free(bin);
 			free_doubletab(args);

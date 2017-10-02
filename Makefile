@@ -6,7 +6,7 @@
 #    By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/09 20:23:23 by gcadiou           #+#    #+#              #
-#    Updated: 2017/09/29 18:10:16 by gcadiou          ###   ########.fr        #
+#    Updated: 2017/10/02 18:04:44 by gcadiou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC = minishell.c    \
 	  env.c          \
 	  check_entry.c  \
 	  builtins.c     \
+	  check_access.c \
 	  utils.c
 
 OBJ = $(SRC:.c=.o)

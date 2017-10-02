@@ -6,20 +6,33 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:25:08 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 19:45:21 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/02 19:56:29 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*check_path(char *name)
+char	*check_path(char *name, char **env)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	if (name[0] == '/')
-		return (ft_strdup(name));
+			return (ft_strdup(name));
 	else if (ft_strncmp(name, "./", 2) == 0 || ft_strncmp(name, "../", 3) == 0)
-		return (ft_strdup(name));
+	{
+		tmp = ft_strjoin_separator(getcwd(tmp, 0), name, "/", 1);
+		return (tmp);
+	}
 	else if (name[0] == '~')
-		return (ft_strdup(name));
+	{
+		if (name[1] != '/')
+			return (ft_strdup(name));
+		tmp = ft_strdup(name);
+		tmp = ft_strcut_begin(tmp, 2);
+		tmp = ft_strjoin_separator(get_value(env, "HOME"), tmp, "/", 3);
+		return (tmp);
+	}
 	else
 		return (NULL);
 }

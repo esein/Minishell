@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 05:25:10 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 17:57:27 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/02 17:53:14 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,9 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 
 char				*ft_strjoin(char const *s1, char const *s2);
+
+char				*ft_strjoin_separator(char *prefix, char *suffix,
+									char *separator, int f);
 
 char				*ft_strtrim(char const *s);
 

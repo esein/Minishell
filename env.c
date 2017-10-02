@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 18:09:51 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/02 20:08:36 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int		find_name(char *wd, char *name)
 	if ((dir = opendir(wd)) == NULL)
 		return (0);
 		while ((file = readdir(dir)))
-		if (ft_strcmp(file->d_name, name) == 0)
-		{
-			closedir(dir);
-			return (1);
-		}
+			if (ft_strcmp(file->d_name, name) == 0)
+			{
+				closedir(dir);
+				return (1);
+			}
 	closedir(dir);
 	return (0);
 }
@@ -37,12 +37,12 @@ char	*find_bin(char **env, char *name)
 	char	*join2;
 	int		i;
 
-	i = 1;
-	if ((tmp1 = check_path(name)) != NULL)
+	i = 0;
+	if ((tmp1 = check_path(name, env)) != NULL)
 		return (tmp1);
 	tmp1 = get_value(env, "PATH");
 	tmp = ft_strsplit(tmp1, ':');
-	ft_free(tmp1);
+	tmp1 = ft_free(tmp1);
 	while (tmp[i] != 0)
 	{
 		if (find_name(tmp[i], name) == 1)
@@ -56,8 +56,7 @@ char	*find_bin(char **env, char *name)
 		i++;
 	}
 	free_doubletab(tmp);
-	ft_putendl("command not found");
-	return (NULL);
+	return (ft_strdup(name));
 }
 
 char	*get_value(char **env, char *var)
@@ -71,12 +70,12 @@ char	*get_value(char **env, char *var)
 		tmp = ft_strcpy_until(env[i], '=');
 		if (ft_strcmp(tmp, var) == 0)
 		{
-			ft_free(tmp);
+			tmp = ft_free(tmp);
 			tmp = ft_str_endcpy_until(env[i], '=');
 			tmp = ft_strcut_begin(tmp, 1);
 			return (tmp);
 		}
-		ft_free(tmp);
+		tmp = ft_free(tmp);
 		i++;
 	}
 	return (0);

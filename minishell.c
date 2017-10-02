@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 20:43:13 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 18:11:49 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/02 17:05:06 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		print_prompt(char **env)
 	COLOR(S_CYAN);
 	ft_putchar('[');
 	ft_putstr(tmp);
-	free(tmp);
+	tmp = ft_free(tmp);
 	ft_putchar(':');
 	tmp = ft_str_endcpy_until(pwd, '/');
 	tmp = ft_strcut_begin(tmp, 1);

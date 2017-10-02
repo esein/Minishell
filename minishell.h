@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 18:09:49 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/02 19:53:24 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 # include <sys/utsname.h>
 
 int		check_builtin(char *name);
-void		set_env(char **env, char **args);
+
+int		check_rights(char *path_name);
+
+int		check_directory(char *path_name);
 
 void	set_env(char **env, char **args);
+
 void	echo(char **args);
 
-char	*check_path(char *name);
+char	*check_path(char *name, char **env);
+
 char	**parse_entry(char *entry);
 
 char	*find_bin(char **env, char *name);
