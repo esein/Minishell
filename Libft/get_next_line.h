@@ -6,13 +6,13 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 17:08:30 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/25 15:25:36 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:02:15 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 1
 
 # include "libft.h"
 

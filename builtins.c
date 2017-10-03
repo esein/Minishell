@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/09/29 20:31:48 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/03 19:05:12 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ int			check_set(char **env, char **args)
 		ft_putstr("setenv : too many arguments");
 		return (0);
 	}
+	ft_putstr("nb args setenv : ");
 	ft_putnbr(x);
-	return (0);
+	return (1);
 }
 
 void		set_env(char **env, char **args)
 {
-	check_set(env, args);
+	if (check_set(env, args) == 0)
+		return (0);
 }

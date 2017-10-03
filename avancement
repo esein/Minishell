@@ -1,8 +1,6 @@
 URGENT : GERER LES ESPACE ET TAB TOUS SEULS (ne rien afficher)
 
-last : random segfault quand on fait une commande...
 
-execve marche bien apperemment
 echo fait, faire env setenv unsetenv puis cd.
 
 

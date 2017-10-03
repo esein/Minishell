@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/02 20:08:36 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:13:50 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ char	*find_bin(char **env, char *name)
 
 char	*get_value(char **env, char *var)
 {
-	int	i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (env[i] != 0)

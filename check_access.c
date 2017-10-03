@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 16:23:07 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/02 20:08:35 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:21:50 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ int		check_directory(char *path_name)
 		{
 			ft_putstr(path_name);
 			ft_putendl(" is a directory");
+			free(dir);
 			return (1);
 		}
 	}
+	free(dir);
 	return (0);
 }
-
