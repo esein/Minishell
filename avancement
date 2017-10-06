@@ -1,9 +1,11 @@
-URGENT : GERER LES ESPACE ET TAB TOUS SEULS (ne rien afficher)
-
-
 echo fait, faire env setenv unsetenv puis cd.
 
+setenv look good, go unsetenv now and sort the fonctions in diffrent files.
 
+
+
+
+later :
 tests dur : checker les entree pipe exemple echo "lol" | ./Minishell
 
 a faire plus tard : penser a changer les fonctions ft_str_endcpy/cut, actuellement coupe la fin et retourne le debut mais logiquement devrait faire l'inverse.
