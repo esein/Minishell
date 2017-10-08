@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/06 23:47:31 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/08 21:30:39 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char		**add_var_env(char **env, char *new_var, char *new_value)
 	char	**new_env;
 	int		size_env;
 
-	if (check_var(env, new_var) == 1)
+	if (check_var(env, new_var))
 	{
 		change_value(env, new_var, new_value);
 		return (env);
@@ -48,6 +48,33 @@ char		**add_var_env(char **env, char *new_var, char *new_value)
 		new_env[size_env] = ft_strjoin(new_var, "=");
 	size_env++;
 	new_env[size_env] = NULL;
+	return (new_env);
+}
+
+char		**rm_var_env(char **env, char *var)
+{
+	int		i;
+	int		l;
+	int		x;
+	char	**new_env;
+
+	i = 0;
+	l = 0;
+	x = check_var(env, var);
+	new_env = (char **)ft_memalloc(sizeof(char *) * 2);
+	while (env[i])
+	{
+		if (i != x)
+		{
+			new_env = (char **)ft_realloc(new_env, sizeof(char *) * (l + 2),
+										sizeof(char *) * (l + 1));
+			new_env[l] = ft_strdup(env[i]);
+			l++;
+		}
+		i++;
+	}
+	new_env[l] = NULL;
+	env = free_doubletab(env);
 	return (new_env);
 }
 
@@ -86,7 +113,11 @@ int			check_var(char **env, char *var)
 	{
 		tmp = ft_strcpy_until(env[i], '=');
 		if (ft_strcmp(tmp, var) == 0)
-			return (1);
+		{
+			free(tmp);
+			return (i);
+		}
+		free(tmp);
 		i++;
 	}
 	return (0);
@@ -101,8 +132,8 @@ char		**set_env(char **env, char **args)
 		x++;
 	if (x > 3)
 	{
-		ft_putstr("setenv : too many arguments");
-		return (0);
+		ft_putendl("setenv : Too many arguments");
+		return (env);
 	}
 	ft_putstr("nb args setenv : ");
 	ft_putnbr(x);
@@ -116,6 +147,31 @@ char		**set_env(char **env, char **args)
 	else if (x == 3)
 	{
 			env = add_var_env(env, args[1], args[2]);
+	}
+	return (env);
+}
+
+char		**unset_env(char **env, char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		i++;
+	if (i == 1)
+	{
+		ft_putendl("unsetenv : Too few arguments");
+		return (env);
+	}
+	else
+	{
+		i = 1;
+		while (args[i])
+		{
+			if (check_var(env, args[i]))
+				env = rm_var_env(env, args[i]);
+			i++;
+		}
 	}
 	return (env);
 }

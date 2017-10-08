@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:10:25 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/06 23:47:31 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/08 20:51:35 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		run_builtin(int	num, char ***env, char **args)
 	else if (num == 4)
 		*env = set_env(*env, args);
 	else if (num == 5)
-		ft_putstr("unsetenv");
+		*env = unset_env(*env, args);
 	else if (num == 6)
 		exit(0);
 	return (0);

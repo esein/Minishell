@@ -1,8 +1,8 @@
-echo fait, faire env setenv unsetenv puis cd.
+echo fait, faire env puis cd.
 
-setenv look good, go unsetenv now and sort the fonctions in diffrent files.
+setenv looks good, go unsetenv now and sort the fonctions in diffrent files.
 
-
+unsetenv looks good.
 
 
 later :

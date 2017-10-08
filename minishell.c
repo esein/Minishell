@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 20:43:13 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/06 23:04:38 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/08 18:29:15 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int		main()
 
 	env = create_env();
 	run_loop(env);
-//	free_doubletab(env);
+	free_doubletab(env);
 	return (0);
 }
