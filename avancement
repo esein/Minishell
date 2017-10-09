@@ -4,6 +4,7 @@ setenv looks good, go unsetenv now and sort the fonctions in diffrent files.
 
 unsetenv looks good.
 
+env gere les options i/u, reste a ajouter les eventuelles nouvelles var et a lancer le bin.
 
 later :
 tests dur : checker les entree pipe exemple echo "lol" | ./Minishell

@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/08 20:51:33 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/09 19:29:24 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int		run_bin(char **args, char **env, char *cmd);
 char	**set_env(char **env, char **args);
 
 char	**unset_env(char **env, char **args);
+
 char	**add_var_env(char **env, char *new_var, char *new_value);
+
+char	**rm_var_env(char **env, char *var);
 
 int		change_value(char **env, char *var, char *new_value);
 

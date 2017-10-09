@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 18:37:19 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/06 21:28:56 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/09 22:18:01 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,23 @@ char	*find_bin(char **env, char *name)
 {
 	char	**tmp;
 	char	*tmp1;
-	char	*join2;
+	char	*join;
 	int		i;
 
 	i = 0;
-	if ((tmp1 = check_path(name, env)) != NULL)
+	if (((tmp1 = check_path(name, env)) != NULL))
 		return (tmp1);
-	tmp1 = get_value(env, "PATH");
+	if ((tmp1 = get_value(env, "PATH")) == NULL)
+		return (ft_strdup(name));
 	tmp = ft_strsplit(tmp1, ':');
 	tmp1 = ft_free(tmp1);
 	while (tmp[i] != 0)
 	{
 		if (find_name(tmp[i], name) == 1)
 		{
-			tmp1 = ft_strjoin(tmp[i], "/");
-			join2 = ft_strjoin(tmp1, name);
-			ft_free(tmp1);
+			join = ft_strjoin_separator(tmp[i], name, "/", 0);
 			free_doubletab(tmp);
-			return (join2);
+			return (join);
 		}
 		i++;
 	}
@@ -78,5 +77,5 @@ char	*get_value(char **env, char *var)
 		tmp = ft_free(tmp);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
