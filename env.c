@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/10 00:12:52 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/10 13:56:53 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int			check_var(char **env, char *var)
 	char	*tmp;
 
 	i = 0;
+	if (!(var))
+		return (-1);
 	while (env[i])
 	{
 		tmp = ft_strcpy_until(env[i], '=');

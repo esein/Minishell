@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/09 19:29:24 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/10 11:47:23 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*find_bin(char **env, char *name);
 int		find_name(char *wd, char *name);
 
 int		run_bin(char **args, char **env, char *cmd);
+
+void		built_env(char **env, char **args);
 
 char	**set_env(char **env, char **args);
 

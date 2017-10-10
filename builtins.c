@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/10 00:12:51 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/10 13:56:52 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,30 @@ void		echo(char **args)
 	}
 }
 
-void		env(char **env, char **args)
+char		**clone_env(char **env)
+{
+	char	**new_env;
+	int		i;
+
+	i = 0;
+	new_env = (char **)ft_memalloc(sizeof(char *) * 2);
+	while (env[i])
+	{
+		new_env = (char **)ft_realloc(new_env, sizeof(char *) * (i + 2),
+										sizeof(char *) * (i + 1));
+		new_env[i] = ft_strdup(env[i]);
+		i++;
+	}
+	new_env[i] = NULL;
+	return (new_env);
+}
+
+void		built_env(char **env, char **args)
 {
 	int		i;
 	char	**new_env;
 
-	new_env = NULL;
+	new_env = clone_env(env);
 	i = 1;
 	while (args[i])
 	{
@@ -43,16 +61,18 @@ void		env(char **env, char **args)
 			if (args[i][1] == 'u')
 			{
 				i++;
-				new_env = rm_var_env(env, args[i]);
+				new_env = rm_var_env(new_env, args[i]);
 			}
-			else if (args[i][i] == 'i')
+			else if (args[i][1] == 'i')
 			{
 				new_env = free_doubletab(env);
 				new_env = (char **)ft_memalloc(sizeof(char *) * 1);
 				new_env[0] = NULL;
 			}
 		}
+		i++;
 	}
+	ft_print_char_tab(new_env, '\n');
 }
 
 char		**set_env(char **env, char **args)
