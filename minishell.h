@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/10 11:47:23 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/12 10:08:38 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ int		find_name(char *wd, char *name);
 
 int		run_bin(char **args, char **env, char *cmd);
 
-void		built_env(char **env, char **args);
+int		cd_builtin(char **env, char **args);
+
+int		env_builtin(char **env, char **args);
+
+int		env_builtin_norme(char ***env, char **args, int *i);
+
+char	**env_builtin_options(char **env, char **args, int *i);
 
 char	**set_env(char **env, char **args);
 
@@ -44,6 +50,10 @@ char	**unset_env(char **env, char **args);
 char	**add_var_env(char **env, char *new_var, char *new_value);
 
 char	**rm_var_env(char **env, char *var);
+
+char	**rm_all_env(char **env);
+
+char	**clone_env(char **env);
 
 int		change_value(char **env, char *var, char *new_value);
 
@@ -55,7 +65,9 @@ int		run_loop(char **env);
 
 char	*get_value(char **env, char *var);
 
-int		print_prompt(char **env);
+char	*print_prompt(char **env, char *tmp, char *pwd);
+
+int		set_prompt(char **env);
 
 void	exit_error(char *error);
 

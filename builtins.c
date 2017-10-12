@@ -6,14 +6,17 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/10 13:56:52 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/12 11:45:04 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		echo(char **args)
+void	echo(char **args)
 {
+	int	i;
+
+	i = 1;
 	if (args[1])
 	{
 		if (ft_strcmp(args[1], "-n") != 0)
@@ -23,59 +26,75 @@ void		echo(char **args)
 		}
 		else
 		{
-			if (args[2])
-				ft_print_char_tab(&(args[2]), ' ');
+			i = 2;
+			while (args[i])
+			{
+				ft_putstr(args[i]);
+				i++;
+				if (args[i])
+					ft_putchar(' ');
+			}
 		}
 	}
 }
 
-char		**clone_env(char **env)
+int		cd_builtin(char **env, char **args)
 {
-	char	**new_env;
 	int		i;
 
 	i = 0;
-	new_env = (char **)ft_memalloc(sizeof(char *) * 2);
-	while (env[i])
-	{
-		new_env = (char **)ft_realloc(new_env, sizeof(char *) * (i + 2),
-										sizeof(char *) * (i + 1));
-		new_env[i] = ft_strdup(env[i]);
+	while (args[i])
 		i++;
+	if (i > 2)
+	{
+		ft_putendl("cd : Too many arguments");
+		return (0);
 	}
-	new_env[i] = NULL;
-	return (new_env);
+	else if (i == 1)
+	{
+		if (chdir(get_value(env, "HOME")) == 0)
+			change_value(env, "PWD", "HOME");
+		else
+			ft_putendl("invalid HOME");
+	}
+	else
+	{
+		if (chdir(args[1]) == 0)
+			change_value(env, "PWD", args[1]);
+		else
+			ft_putendl("cd : can't access this");
+	}
+	return (1);
 }
 
-void		built_env(char **env, char **args)
+int		env_builtin(char **env, char **args)
 {
 	int		i;
 	char	**new_env;
+	char	*bin;
 
+	bin = NULL;
 	new_env = clone_env(env);
 	i = 1;
-	while (args[i])
+	new_env = env_builtin_options(new_env, args, &i);
+	if (i == -1)
 	{
-		if (args[i][0] == '-')
-		{
-			if (args[i][1] == 'u')
-			{
-				i++;
-				new_env = rm_var_env(new_env, args[i]);
-			}
-			else if (args[i][1] == 'i')
-			{
-				new_env = free_doubletab(env);
-				new_env = (char **)ft_memalloc(sizeof(char *) * 1);
-				new_env[0] = NULL;
-			}
-		}
-		i++;
+		free_doubletab(new_env);
+		return (0);
 	}
-	ft_print_char_tab(new_env, '\n');
+	if (args[i])
+	{
+		if (check_rights(bin = find_bin(env, args[i])) != 0)
+			run_bin(&(args[i]), new_env, bin);
+		bin = ft_free(bin);
+	}
+	else
+		ft_print_char_tab(new_env, '\n');
+	free_doubletab(new_env);
+	return (0);
 }
 
-char		**set_env(char **env, char **args)
+char	**set_env(char **env, char **args)
 {
 	int	x;
 
@@ -87,23 +106,16 @@ char		**set_env(char **env, char **args)
 		ft_putendl("setenv : Too many arguments");
 		return (env);
 	}
-	ft_putstr("nb args setenv : ");
-	ft_putnbr(x);
-	ft_putchar('\n');
 	if (x == 1)
 		ft_print_char_tab(env, '\n');
 	else if (x == 2)
-	{
-			env = add_var_env(env, args[1], NULL);
-	}
+		env = add_var_env(env, args[1], NULL);
 	else if (x == 3)
-	{
-			env = add_var_env(env, args[1], args[2]);
-	}
+		env = add_var_env(env, args[1], args[2]);
 	return (env);
 }
 
-char		**unset_env(char **env, char **args)
+char	**unset_env(char **env, char **args)
 {
 	int	i;
 
@@ -120,8 +132,7 @@ char		**unset_env(char **env, char **args)
 		i = 1;
 		while (args[i])
 		{
-//				if (check_var(env, args[i]) != -1)
-					env = rm_var_env(env, args[i]);
+			env = rm_var_env(env, args[i]);
 			i++;
 		}
 	}

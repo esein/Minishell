@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 16:23:07 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/03 17:21:50 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/12 11:53:20 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		check_rights(char *path_name)
 		ft_putendl("command not found");
 		return (0);
 	}
-		return (1);
+	return (1);
 }
 
 int		check_directory(char *path_name)

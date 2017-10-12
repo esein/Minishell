@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 18:37:19 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/09 22:18:01 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/12 11:47:59 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int		find_name(char *wd, char *name)
 
 	if ((dir = opendir(wd)) == NULL)
 		return (0);
-		while ((file = readdir(dir)))
-			if (ft_strcmp(file->d_name, name) == 0)
-			{
-				closedir(dir);
-				return (1);
-			}
+	while ((file = readdir(dir)))
+		if (ft_strcmp(file->d_name, name) == 0)
+		{
+			closedir(dir);
+			return (1);
+		}
 	closedir(dir);
 	return (0);
 }

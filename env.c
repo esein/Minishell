@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 08:27:16 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/10 13:56:53 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/12 07:34:14 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ int			change_value(char **env, char *var, char *new_value)
 	return (0);
 }
 
+char		**rm_all_env(char **env)
+{
+	char	**new_env;
+
+	new_env = ft_memalloc(sizeof(char *) * 2);
+	new_env[0] = NULL;
+	free_doubletab(env);
+	return (new_env);
+}
+
 char		**rm_var_env(char **env, char *var)
 {
 	int		i;
@@ -93,6 +103,8 @@ char		**add_var_env(char **env, char *new_var, char *new_value)
 	char	**new_env;
 	int		size_env;
 
+	if (!new_var || !env)
+		return (env);
 	if (check_var(env, new_var) != -1)
 	{
 		change_value(env, new_var, new_value);
@@ -108,24 +120,4 @@ char		**add_var_env(char **env, char *new_var, char *new_value)
 	size_env++;
 	new_env[size_env] = NULL;
 	return (new_env);
-}
-
-char	**create_env()
-{
-	int			i;
-	char		**env;
-	extern char	**environ;
-
-	i = 0;
-	env = (char **)ft_memalloc(sizeof(char *) * 2);
-	while (environ[i] != 0)
-	{
-		env = (char **)ft_realloc(env, sizeof(char *) * (i + 2),
-				sizeof(char *) * (i + 1));
-		env[i] = ft_strdup(environ[i]);
-		i++;
-	}
-	env[i] = NULL;
-//	ft_print_char_tab(env, '\n');
-	return (env);
 }

@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:25:08 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/02 19:56:29 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/12 11:47:49 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ char	*check_path(char *name, char **env)
 
 	tmp = NULL;
 	if (name[0] == '/')
-			return (ft_strdup(name));
+		return (ft_strdup(name));
 	else if (ft_strncmp(name, "./", 2) == 0 || ft_strncmp(name, "../", 3) == 0)
-	{
-		tmp = ft_strjoin_separator(getcwd(tmp, 0), name, "/", 1);
-		return (tmp);
-	}
+		return (ft_strdup(name));
 	else if (name[0] == '~')
 	{
 		if (name[1] != '/')
@@ -37,14 +34,15 @@ char	*check_path(char *name, char **env)
 		return (NULL);
 }
 
-char	*read_entry()
+char	*read_entry(void)
 {
 	char	*entry;
 	int		ret;
 	int		i;
+
 	i = 0;
 	entry = NULL;
-	ret = get_next_line(0 , &entry);
+	ret = get_next_line(0, &entry);
 	if (ret <= 0)
 		exit(0);
 	while (entry[i])
