@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:10:25 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/12 11:53:22 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/14 04:42:59 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		run_builtin(int num, char ***env, char **args)
 	else if (num == 5)
 		*env = unset_env(*env, args);
 	else if (num == 6)
-		exit(0);
+		exit_builtin(args);
 	return (0);
 }
 
@@ -43,11 +43,11 @@ int		run_bin(char **args, char **env, char *bin)
 		execve(bin, args, env);
 		if (check_directory(bin) == 0)
 		{
-			ft_putstr(bin);
-			ft_putstr(": ");
-			ft_putendl("command isn't executable");
+			ft_putstr_fd(bin, 2);
+			ft_putstr_fd(": ", 2);
+			ft_putendl_fd("command isn't executable", 2);
 		}
-		exit(0);
+		exit(1);
 	}
 	return (0);
 }

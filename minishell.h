@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/12 10:08:38 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/14 05:35:47 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "Libft/libft.h"
 # include <dirent.h>
 # include <sys/utsname.h>
+
+int		change_pwd(char **env, char *value);
+
+void	exit_builtin(char **args);
 
 int		check_builtin(char *name);
 

@@ -6,11 +6,45 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 05:34:28 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/12 11:51:43 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/14 05:35:14 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int			change_pwd(char **env, char *value)
+{
+	char	*tmp;
+	char	*pwd;
+
+	pwd = NULL;
+	tmp = NULL;
+	if (chdir(value) != 0)
+		return (-1);
+	pwd = getcwd(pwd, 0);
+	tmp = get_value(env, "PWD");
+	change_value(env, "OLDPWD", tmp);
+//	tmp = ft_strjoin_separator(tmp, pwd, "/", 1);
+	change_value(env, "PWD", pwd);
+	ft_free(tmp);
+	ft_free(pwd);
+	return (0);
+}
+
+void		exit_builtin(char **args)
+{
+	int		i;
+
+	i = 0;
+	while (args[i])
+		i++;
+	if (i == 1)
+		exit(0);
+	else if (i == 2)
+		exit(ft_atoi(args[1]));
+	else
+		ft_putendl_fd("exit : Too many arguments", 2);
+}
 
 int			env_builtin_norme(char ***env, char **args, int *i)
 {
