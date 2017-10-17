@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 05:34:28 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/14 05:35:14 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/17 09:45:35 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int			change_pwd(char **env, char *value)
 	pwd = getcwd(pwd, 0);
 	tmp = get_value(env, "PWD");
 	change_value(env, "OLDPWD", tmp);
-//	tmp = ft_strjoin_separator(tmp, pwd, "/", 1);
 	change_value(env, "PWD", pwd);
 	ft_free(tmp);
 	ft_free(pwd);
@@ -41,7 +40,19 @@ void		exit_builtin(char **args)
 	if (i == 1)
 		exit(0);
 	else if (i == 2)
+	{
+		i = 0;
+		while (args[1][i])
+		{
+			if (!ft_isdigit(args[1][i]))
+			{
+				ft_putendl_fd("exit : non numeric argument", 2);
+				exit(1);
+			}
+			i++;
+		}
 		exit(ft_atoi(args[1]));
+	}
 	else
 		ft_putendl_fd("exit : Too many arguments", 2);
 }
@@ -63,8 +74,8 @@ int			env_builtin_norme(char ***env, char **args, int *i)
 		*env = rm_all_env(*env);
 	else
 	{
-		ft_putstr("invalid env option : ");
-		ft_putendl(args[*i]);
+		ft_putstr_fd("invalid env option : ", 2);
+		ft_putendl_fd(args[*i], 2);
 		*i = -1;
 		return (0);
 	}

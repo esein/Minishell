@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:25:08 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/14 00:38:29 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/17 09:44:53 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ char	**parse_entry(char *entry)
 	char	**args;
 
 	args = ft_strsplit_whitespace(entry);
-//	if (ft_strcmp(args[0], "exit") == 0)
-//		exit(0);
 	if (args == NULL)
 		exit(1);
 	return (args);
