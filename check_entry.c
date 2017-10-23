@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:25:08 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/20 09:34:43 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/23 08:40:47 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ char	*check_path(char *name, char **env)
 		return (NULL);
 }
 
-char	*read_entry(void)
+char	**read_entry(void)
 {
 	char	*entry;
 	int		ret;
 	int		i;
+	char	**args;
 
+	args = NULL;
 	i = 0;
 	entry = NULL;
 	ret = get_next_line(0, &entry);
@@ -48,7 +50,10 @@ char	*read_entry(void)
 	while (entry[i])
 	{
 		if (!(ISSPACE(entry, i)))
-			return (entry);
+		{
+			args = parse_entry(entry);
+			return (args);
+		}
 		i++;
 	}
 	return (NULL);
@@ -60,11 +65,27 @@ char	**parse_entry(char *entry)
 
 	args = ft_parsecmd(entry);
 	if (args == NULL)
-	{
 		ft_putendl_fd("error in command parsing", 2);
-		exit(1);
-	}
 	return (args);
+}
+
+int		check_args_setenv(char *args)
+{
+	int		i;
+
+	i = 0;
+	if (!args)
+		return (0);
+	while (args[i])
+	{
+		if (args[i] == '=')
+		{
+			ft_putendl_fd("setenv : bad syntax", 2);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
 int		check_builtin(char *name)

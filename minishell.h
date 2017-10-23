@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 19:20:11 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/14 05:35:47 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/23 08:37:06 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <sys/utsname.h>
 
 int		change_pwd(char **env, char *value);
+
+int		check_args_setenv(char *args);
 
 void	exit_builtin(char **args);
 
@@ -63,7 +65,7 @@ int		change_value(char **env, char *var, char *new_value);
 
 int		check_var(char **env, char *var);
 
-char	*read_entry();
+char	**read_entry();
 
 int		run_loop(char **env);
 

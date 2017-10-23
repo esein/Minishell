@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 03:35:53 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/20 09:23:14 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/23 08:15:14 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	**ft_parsecmd(char *cmd)
 	if ((nb_args = calcul_nb_args(cmd)) == -1)
 	{
 		ft_putendl_fd("quote not closed", 2);
-		exit(1);
+		return (NULL);
 	}
 	tab = ft_memalloc(sizeof(char *) * (nb_args + 1));
 	while (args < nb_args)

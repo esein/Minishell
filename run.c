@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:10:25 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/17 09:44:24 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/23 08:21:02 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,19 @@ int		run_bin(char **args, char **env, char *bin)
 
 int		run_loop(char **env)
 {
-	char	*entry;
 	int		end;
 	int		num;
 	char	**args;
 	char	*bin;
 
 	end = 0;
-	entry = NULL;
 	bin = NULL;
 	while (end == 0)
 	{
 		set_prompt(env);
-		entry = read_entry();
-		if (entry != NULL)
+		args = read_entry();
+		if (args != NULL)
 		{
-			args = parse_entry(entry);
 			if ((num = check_builtin(args[0])) > 0)
 				run_builtin(num, &env, args);
 			else if (check_rights(bin = find_bin(env, args[0])) != 0)

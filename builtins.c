@@ -6,7 +6,7 @@
 /*   By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 16:55:36 by gcadiou           #+#    #+#             */
-/*   Updated: 2017/10/17 09:44:25 by gcadiou          ###   ########.fr       */
+/*   Updated: 2017/10/23 08:47:02 by gcadiou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,23 @@ void	echo(char **args)
 int		cd_builtin(char **env, char **args)
 {
 	int		i;
+	char	*tmp;
 
 	i = ft_tablen(args);
+	tmp = NULL;
 	if (i == 1)
 	{
-		if (change_pwd(env, get_value(env, "HOME")) != 0)
+		if (change_pwd(env, (tmp = get_value(env, "HOME"))) != 0)
 			ft_putendl_fd("invalid HOME", 2);
+		tmp = ft_free(tmp);
 	}
 	else if (i == 2)
 	{
 		if (ft_strcmp(args[1], "-") == 0)
 		{
-			if (change_pwd(env, get_value(env, "OLDPWD")) != 0)
+			if (change_pwd(env, (tmp = get_value(env, "OLDPWD"))) != 0)
 				ft_putendl_fd("cd : invalid OLDPWD", 2);
+			tmp = ft_free(tmp);
 		}
 		else if (change_pwd(env, (args[1])) != 0)
 			ft_putendl_fd("cd : can't access this", 2);
@@ -96,7 +100,11 @@ char	**set_env(char **env, char **args)
 
 	x = 0;
 	while (args[x])
+	{
+		if (check_args_setenv(args[x]) == 0)
+			return (env);
 		x++;
+	}
 	if (x > 3)
 	{
 		ft_putendl_fd("setenv : Too many arguments", 2);
