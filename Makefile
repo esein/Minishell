@@ -6,7 +6,7 @@
 #    By: gcadiou <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/09 20:23:23 by gcadiou           #+#    #+#              #
-#    Updated: 2017/10/06 23:06:31 by gcadiou          ###   ########.fr        #
+#    Updated: 2017/10/29 17:36:41 by gcadiou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,7 @@ FLAG = -Wall -Werror -Wextra
 all: compilib $(NAME)
 
 $(NAME): $(LIB) $(SRC)
-	gcc $(SRC) $(LIB) -I $(PATHLIB) -o $(NAME)
-#	$(FLAG)
+	gcc $(SRC) $(LIB) -I $(PATHLIB) -o $(NAME) $(FLAG)
 
 compilib:
 	make -C $(PATHLIB)
